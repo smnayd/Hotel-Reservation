@@ -1,0 +1,37 @@
+package com.hotel.reservationsystem.service;
+
+import com.hotel.reservationsystem.entity.Hotel;
+import com.hotel.reservationsystem.repository.HotelRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class HotelServiceImpl implements HotelService{
+    private HotelRepository hotelRepository;
+    @Autowired
+    public HotelServiceImpl(HotelRepository hotelRepository){
+        this.hotelRepository = hotelRepository;
+    }
+    @Override
+    public Hotel createHotel(Hotel hotel){
+        return hotelRepository.save(hotel);
+    }
+    @Override
+    public Hotel updateHotel(Hotel hotel){
+        return hotelRepository.save(hotel);
+    }
+    @Override
+    public void deleteHotel(int id){
+        hotelRepository.deleteById(id);
+    }
+    @Override
+    public Hotel getHotelById(int id){
+        return hotelRepository.findById(id).orElse(null);
+    }
+    @Override
+    public List<Hotel> getAllHotels() {
+        return hotelRepository.findAll();
+    }
+}
