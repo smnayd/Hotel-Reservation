@@ -27,11 +27,15 @@ public class Hotel {
     private String city;
     @Column(nullable = false)
     private String address;
-    @Column(nullable = false, length = 11, unique = true)
+    @Column(nullable = false, length = 15, unique = true)
     private String phone;
     private int rating;
     private String image;
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Reservation> reservations;
+
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Room> rooms;
 }

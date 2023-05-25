@@ -4,21 +4,12 @@ import com.hotel.reservationsystem.entity.Hotel;
 import com.hotel.reservationsystem.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.core.io.support.ResourceRegion;
 import org.springframework.http.*;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.core.io.Resource;
 
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
-import java.util.Map;
 
-import static ch.qos.logback.core.FileAppender.DEFAULT_BUFFER_SIZE;
 
 @RestController
 @RequestMapping("/hotels")
@@ -41,7 +32,7 @@ public class HotelController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Hotel> updateHotel(@PathVariable("id") int id, Hotel hotel){
+    public ResponseEntity<Hotel> updateHotel(@PathVariable("id") int id,@RequestBody Hotel hotel){
         try{
             hotel.setId(id);
             Hotel updatedHotel = hotelService.updateHotel(hotel);

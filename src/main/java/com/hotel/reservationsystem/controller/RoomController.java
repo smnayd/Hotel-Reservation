@@ -3,6 +3,7 @@ package com.hotel.reservationsystem.controller;
 import com.hotel.reservationsystem.entity.Room;
 import com.hotel.reservationsystem.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +72,17 @@ public class RoomController {
         try{
             List<Room> rooms = roomService.getAllRooms();
             return new ResponseEntity<>(rooms, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/hotel/{hotelId}")
+    public ResponseEntity<Room> getRoomByHotelId(@PathVariable("hotelId")int hotelId){
+        try{
+            Room room = roomService.getRoomByHotelId(hotelId);
+            return new ResponseEntity<>(room,HttpStatus.OK);
         }
         catch (Exception ex){
             ex.printStackTrace();

@@ -27,7 +27,7 @@ public class User {
     private String password;
     @Column(nullable = false, length = 100, unique = true)
     private String email;
-    @Column(nullable = false, length = 11)
+    @Column(nullable = false, length = 15)
     private String phone;
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @JsonIgnore
