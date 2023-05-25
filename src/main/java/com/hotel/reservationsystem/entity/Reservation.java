@@ -1,5 +1,6 @@
 package com.hotel.reservationsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,7 +42,8 @@ public class Reservation {
     @JoinColumn(name = "hotel_id", referencedColumnName = "id")
     private Hotel hotel;
 
-    /*@OneToMany(mappedBy = "reservation", cascade = CascadeType.REMOVE)
-    private List<Payment> payments;*/
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Payment> payments;
 
 }

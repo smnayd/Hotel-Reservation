@@ -10,4 +10,5 @@ public interface HotelService {
     void deleteHotel(int id);
     Hotel getHotelById(int id);
     List<Hotel> getAllHotels();
+    String getHotelByImage(String image);
 }

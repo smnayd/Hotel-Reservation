@@ -1,5 +1,6 @@
 package com.hotel.reservationsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class RoomType {
     private int capacity;
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
-    /*@OneToMany(mappedBy = "roomType")
-    private List<Room> rooms;*/
+    @OneToMany(mappedBy = "roomType")
+    @JsonIgnore
+    private List<Room> rooms;
 }

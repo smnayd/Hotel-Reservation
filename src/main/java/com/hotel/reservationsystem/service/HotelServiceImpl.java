@@ -34,4 +34,8 @@ public class HotelServiceImpl implements HotelService{
     public List<Hotel> getAllHotels() {
         return hotelRepository.findAll();
     }
+    @Override
+    public String getHotelByImage(String image){
+        return hotelRepository.getHotelByImage(image);
+    }
 }

@@ -1,5 +1,6 @@
 package com.hotel.reservationsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +30,8 @@ public class Hotel {
     @Column(nullable = false, length = 11, unique = true)
     private String phone;
     private int rating;
-    /*@OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
-    private List<Reservation> reservations;*/
+    private String image;
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Reservation> reservations;
 }

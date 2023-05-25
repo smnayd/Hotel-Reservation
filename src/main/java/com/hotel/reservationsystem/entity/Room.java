@@ -1,5 +1,6 @@
 package com.hotel.reservationsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +26,8 @@ public class Room {
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "room_type_id", referencedColumnName = "id")
     private RoomType roomType;
-    /*@OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
-    private List<Reservation> reservations;*/
+    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Reservation> reservations;
 
 }

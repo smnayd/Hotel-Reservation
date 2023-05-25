@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/users")
 
 public class UserController {
@@ -19,10 +21,28 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+
+    @PostMapping("/login")
+    public ResponseEntity<Map<String,String>> login(@RequestBody Map<String,String> request){
         try{
-            User createdUser = userService.createUser(user);
+            String email = request.get("email");
+            String password = request.get("password");
+            User existingUser = userService.findUserByEmail(email);
+            if (existingUser != null && existingUser.getPassword().equals(password)){
+                return new ResponseEntity<>( HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        try{
+            User createdUser = userService.register(user);
             return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
         }
         catch (Exception ex){
@@ -30,6 +50,7 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") int userId, @RequestBody User user) {
         try{

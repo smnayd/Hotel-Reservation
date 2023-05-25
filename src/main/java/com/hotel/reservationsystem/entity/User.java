@@ -1,11 +1,13 @@
 package com.hotel.reservationsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -27,6 +29,7 @@ public class User {
     private String email;
     @Column(nullable = false, length = 11)
     private String phone;
-    /* @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private List<Reservation> reservations;*/
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Reservation> reservations;
 }
