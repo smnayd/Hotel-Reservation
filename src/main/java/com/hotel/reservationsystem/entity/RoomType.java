@@ -29,4 +29,8 @@ public class RoomType {
     @OneToMany(mappedBy = "roomType")
     @JsonIgnore
     private List<Room> rooms;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
+    private Hotel hotel;
 }

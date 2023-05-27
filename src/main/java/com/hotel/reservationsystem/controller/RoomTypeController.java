@@ -77,4 +77,15 @@ public class RoomTypeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/hotel/{id}")
+    public ResponseEntity<List<RoomType>> getRoomTypesByHotelId(@PathVariable("id")int id){
+        try{
+            List<RoomType> roomTypes = roomTypeService.getRoomTypesByHotelId(id);
+            return new ResponseEntity<>(roomTypes,HttpStatus.OK);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

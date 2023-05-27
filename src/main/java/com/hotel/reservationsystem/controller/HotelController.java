@@ -4,10 +4,13 @@ import com.hotel.reservationsystem.entity.Hotel;
 import com.hotel.reservationsystem.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.core.io.Resource;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 
@@ -89,6 +92,24 @@ public class HotelController {
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @GetMapping("/search")
+    public ResponseEntity<List<Hotel>> searchHotels(@RequestParam("dateIn") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateIn,
+                                    @RequestParam("dateOut") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOut,
+                                    @RequestParam("guestCount") int guestCount) {
+        try{
+            List<Hotel> hotels = hotelService.searchHotels(dateIn, dateOut, guestCount);
+            if(!hotels.isEmpty()){
+                return new ResponseEntity<>(hotels,HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        catch (Exception ex){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
 }

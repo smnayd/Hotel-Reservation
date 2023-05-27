@@ -39,4 +39,8 @@ public class RoomTypeServiceImpl implements RoomTypeService{
     public List<RoomType> getAllRoomTypes() {
         return roomTypeRepository.findAll();
     }
+    @Override
+    public List<RoomType> getRoomTypesByHotelId(int hotelId){
+        return roomTypeRepository.getRoomTypesByHotelId(hotelId);
+    }
 }

@@ -10,4 +10,5 @@ public interface RoomTypeService {
     void deleteRoomType(int id);
     RoomType getRoomTypeById(int id);
     List<RoomType> getAllRoomTypes();
+    List<RoomType> getRoomTypesByHotelId(int hotelId);
 }

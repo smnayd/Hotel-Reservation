@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,16 +23,16 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false)
-    private LocalDate dateIn;
+    private Date dateIn;
     @Column(nullable = false)
-    private LocalDate dateOut;
+    private Date dateOut;
     @Column(nullable = false)
-    private LocalDate reservationDate;
+    private Date reservationDate;
     @Column(nullable = false)
     private BigDecimal price;
     @Column(nullable = false)
     private String reservationStatus;
-    private LocalDate updatedAt;
+    private Date updatedAt;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id", referencedColumnName = "id")
     private Room room;
