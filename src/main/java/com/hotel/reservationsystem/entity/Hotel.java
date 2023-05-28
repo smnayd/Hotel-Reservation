@@ -31,6 +31,7 @@ public class Hotel {
     private String phone;
     private int rating;
     private String image;
+    private String websiteURL;
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Reservation> reservations;

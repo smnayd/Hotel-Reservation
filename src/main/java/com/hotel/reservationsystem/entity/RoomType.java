@@ -26,6 +26,8 @@ public class RoomType {
     private int capacity;
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
+    private String image;
+    private String description;
     @OneToMany(mappedBy = "roomType")
     @JsonIgnore
     private List<Room> rooms;

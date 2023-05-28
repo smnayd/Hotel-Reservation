@@ -2,11 +2,6 @@ package com.hotel.reservationsystem.service;
 
 import com.hotel.reservationsystem.entity.Hotel;
 
-import javax.persistence.EntityManager;
-import javax.persistence.ParameterMode;
-import javax.persistence.PersistenceContext;
-import javax.persistence.StoredProcedureQuery;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 

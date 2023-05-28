@@ -23,7 +23,6 @@ public class Room {
     private String roomNumber;
     @Column(nullable = false)
     private boolean availability;
-    private String roomDescription;
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "room_type_id", referencedColumnName = "id")
     private RoomType roomType;

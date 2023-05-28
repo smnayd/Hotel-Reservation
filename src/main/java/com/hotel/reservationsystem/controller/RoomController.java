@@ -3,7 +3,6 @@ package com.hotel.reservationsystem.controller;
 import com.hotel.reservationsystem.entity.Room;
 import com.hotel.reservationsystem.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
