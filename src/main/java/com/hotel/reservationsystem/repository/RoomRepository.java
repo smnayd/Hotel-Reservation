@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Integer> {
-    @Query("select r from Room r where r.hotel.id = :hotelId")
-    Room getRoomByHotelId(@Param("hotelId") int hotelId);
+    /*@Query("select r from Room r where r.hotel.id = :hotelId")
+    Room getRoomByHotelId(@Param("hotelId") int hotelId);*/
 }

@@ -30,8 +30,4 @@ public class Room {
     @JsonIgnore
     private List<Reservation> reservations;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
-    private Hotel hotel;
-
 }

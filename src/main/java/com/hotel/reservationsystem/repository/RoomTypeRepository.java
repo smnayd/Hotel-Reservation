@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface RoomTypeRepository extends JpaRepository<RoomType,Integer> {
-    @Query("SELECT DISTINCT r.roomType FROM Room r  WHERE r.roomType.hotel.id = :hotelId AND r.availability = true")
+    @Query("SELECT DISTINCT r FROM RoomType r inner join r.rooms ro WHERE r.hotel.id = :hotelId AND ro.availability  = true")
     List<RoomType> getRoomTypesByHotelId(@Param("hotelId") int hotelId);
 
 }

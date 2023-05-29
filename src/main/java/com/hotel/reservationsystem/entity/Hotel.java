@@ -36,9 +36,6 @@ public class Hotel {
     @JsonIgnore
     private List<Reservation> reservations;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<Room> rooms;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
     @JsonIgnore
