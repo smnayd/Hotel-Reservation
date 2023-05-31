@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +24,13 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String,String>> login(@RequestBody Map<String,String> request){
+    public ResponseEntity<User> login(@RequestBody Map<String,String> request){
         try{
             String email = request.get("email");
             String password = request.get("password");
             User existingUser = userService.findUserByEmail(email);
             if (existingUser != null && existingUser.getPassword().equals(password)){
-                return new ResponseEntity<>( HttpStatus.OK);
+                return new ResponseEntity<>(existingUser,HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }

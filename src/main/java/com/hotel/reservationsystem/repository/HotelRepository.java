@@ -14,7 +14,7 @@ import java.util.List;
 public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
     String getHotelByImage(String image);
-    @Query("SELECT h FROM Hotel h JOIN h.roomTypes r "
+    @Query("SELECT DISTINCT h FROM Hotel h JOIN h.roomTypes r "
             + "WHERE r.capacity >= :guestCount "
             + "AND ((:dateIn > CURRENT_DATE AND :dateOut >= :dateIn) "
             + "     OR (:dateIn >= CURRENT_DATE AND :dateOut > CURRENT_DATE)) "
