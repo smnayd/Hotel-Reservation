@@ -26,8 +26,6 @@ public class Room {
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "room_type_id", referencedColumnName = "id")
     private RoomType roomType;
-    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<Reservation> reservations;
+
 
 }

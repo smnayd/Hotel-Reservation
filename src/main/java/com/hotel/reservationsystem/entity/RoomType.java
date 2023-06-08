@@ -31,8 +31,10 @@ public class RoomType {
     @OneToMany(mappedBy = "roomType")
     @JsonIgnore
     private List<Room> rooms;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id", referencedColumnName = "id")
     private Hotel hotel;
+    @OneToMany(mappedBy = "roomType", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Reservation> reservations;
 }

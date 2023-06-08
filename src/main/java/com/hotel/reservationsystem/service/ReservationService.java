@@ -10,4 +10,5 @@ public interface ReservationService {
     void deleteReservation(int id);
     Reservation getReservationById(int id);
     List<Reservation> getAllReservations();
+    List<Reservation> getByUserId(int userId);
 }
